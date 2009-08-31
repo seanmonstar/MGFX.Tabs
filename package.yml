@@ -3,7 +3,7 @@ author: seanmonstar
 category: Interface
 tags: [tabs]
 #docs:          http://url_to_docs
-#demo:          http://demo_url
+demo: http://seanmonstar.github.com/MGFX.Tabs/
 # requires:
 #   - { package: 'some-plugin', version: '0.1' }
 #   - { package: 'http://external-plugin.com' }

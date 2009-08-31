@@ -32,6 +32,8 @@ Invoke the constructor. The first argument is the tab buttons, the second argume
 
 	#JS
 	var tabs = new MGFX.Tabs('#tabs li a', '#tabs div');
+	
+Demo can be seen [here](http://seanmonstar.github.com/MGFX.Tabs/).
 
 Options
 -------
