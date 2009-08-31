@@ -1,45 +1,116 @@
-Plugin Name
-===========
+Class: MGFX.Rotater {#MGFX.Rotater}
+=====================
 
-What goes here is the description. Please don't make it too long. It can contain basic *styling*, **styling**, etc. 
+The base Rotater class, can be used by itself for simple slideshows.
 
-If an image is found within the description, that becomes the screenshot of the plugin. Screenshots are optional but encouraged, given the plugin has some visual interaction. The screenshot can be of any size, but try to keep it of about 200x100.
+### Implements:
 
-![Screenshot](http://url_to_project_screenshot)
+Events, Options
 
-How to use
-----------
+MGFX.Rotater Method: constructor {#MGFX.Rotater:constructor}
+-----------------------------------------------
 
-We expect this section for every plugin. It just explains how to use your plugin.
-Never should a plugin rely on a 3rd party link to explain its behavior or functionality. We need this to ensure that if a website is removed or becomes inaccessible, people can still enjoy your plugins' functionality.
+### Syntax:
 
-It often include code snippets, which are just indented pieces of text:
+	var tabs = new MGFX.Rotater($$('.panel'), options);
 
-	#JS
-	var script = new MyScript()
-	script.doSomething();
+### Arguments:
 
-If the first line is #JS or #CSS or #HTML, then the code is highlighted accordingly. 
+1. slides - (*selector, collection*)
+2. options - (*object*, optional)
 
-Screenshots
------------
+### Options:
 
-This section is optional, but encouraged if the plugin affords it. Just a list of images, one per line. We do the resizing, so use actual size screenshots.
+* **slideInterval**: (*int*) Time in milliseconds to remain on each slide. Default: 5 seconds.
+* **transitionDuration**: (*int*) Time in milliseconds for the transition effect to take. Default: 1 second.
+* **startIndex**: (*int*) A zero-based number for which Tab should be displayed first. Default: 0 (first Tab).
+* **autoplay**: (*boolean*) Whether the tabs should automatically rotate. Default: false.
+* **hover**: (*boolean*) Whether the mouse hovering over a tab should stop the autoplay. Default: true.
+* **hash**: (*boolean*) Whether the Tabs should examine the hash of the URL to determine the startindex. Example: "example.com/portfolio#card". Default: true.
 
-![Screenshot 1](http://url_to_project_screenshot)
-![Screenshot 2](http://url_to_project_screenshot)
-![Screenshot 3](http://url_to_project_screenshot)
-![Screenshot 4](http://url_to_project_screenshot)
 
-Arbitrary section
------------------
+MGFX.Rotater Method: showSlide {#MGFX.Rotater:showSlide}
+-------------------------------------
 
-This is an arbitrary section which will become a Tab in your MooForge project page. 
-Some arbitrary section examples:
+Changes the currently shown tab to the one at the specified index.
 
-* FAQ
-* Notes
-* Misc
-* Known issues
+### Syntax:
+		
+		tabs.showSlide(1);
 
-The name is up to you, but remember to keep it meaningful and simple. Arbitrary sections are always optional.
+
+### Arguments:
+
+1. slideIndex - (int)
+
+### Returns:
+
+* (*object*) This MGFX.Rotater instance.
+
+### Events:
+
+* onShowSlide
+
+MGFX.Rotater Method: autoplay {#MGFX.Rotater:autoplay}
+---------------------------------------------
+
+Start the rotation of slides based on **slideInterval**.
+
+### Syntax:
+		
+		tabs.autoplay();
+
+### Returns:
+
+* (*object*) This MGFX.Rotater instance.
+
+### Events:
+
+* onAutoPlay
+
+
+
+MGFX.Rotater Method: stop {#MGFX.Rotater:stop}
+-----------------------------------------
+
+This stops the rotating started by [autoplay](#MGFX.Rotater:autoplay).
+
+### Syntax:
+
+		tabs.stop();
+
+### Returns:
+
+* (*object*) This MGFX.Rotater instance.
+
+### Events:
+
+* onStop
+
+
+
+MGFX.Rotater Method: rotate {#MGFX.Rotater:rotate}
+-----------------------------------------------------------
+
+This changes the current showing slide to the next in the list.
+
+### Syntax:
+
+		tabs.rotate();
+
+### Returns:
+
+* (*object*) This MGFX.Rotater instance.
+
+### Events:
+
+* onRotate
+
+Class: MGFX.Tabs {#MGFX.Tabs}
+=====================
+
+Extends base [Rotater](#MGFX.Rotater) class to use a set of controller buttons that function like Tabs.
+
+### Extends:
+
+MGFX.Rotater
