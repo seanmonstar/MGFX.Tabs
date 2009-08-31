@@ -36,7 +36,9 @@
 		<script type="text/javascript" src="Demos/tabs.js"></script>
 <script type="text/javascript">
 		window.addEvent('domready',function(){
-			this.tabs = new MGFX.Tabs('.tab','.feature');
+			this.tabs = new MGFX.Tabs('.tab','.feature', {
+				autoplay: true
+			});
 		});	
 		</script>
 </head>
@@ -61,6 +63,7 @@
     </div>
 
     <div class="demo">
+		<h2>Demo</h2>
 <ul id="tabs">
 			<li><a class="tab" href="#" id="one">One</a></li>
 			<li><a class="tab" href="#" id="two">Two</a></li>
