@@ -1,45 +1,50 @@
-Plugin Name
+MGFX.Tabs
 ===========
 
-What goes here is the description. Please don't make it too long. It can contain basic *styling*, **styling**, etc. 
+A simple to use Tabs plugin using MooTools. Uses your normal semantic mark-up, and only requires a single line to get your tabs going.
 
-If an image is found within the description, that becomes the screenshot of the plugin. Screenshots are optional but encouraged, given the plugin has some visual interaction. The screenshot can be of any size, but try to keep it of about 200x100.
-
-![Screenshot](http://url_to_project_screenshot)
+![Screenshot](http://monstar.blazonco.com/images/blog/mgfxtabs.jpg)
 
 How to use
 ----------
 
-We expect this section for every plugin. It just explains how to use your plugin.
-Never should a plugin rely on a 3rd party link to explain its behavior or functionality. We need this to ensure that if a website is removed or becomes inaccessible, people can still enjoy your plugins' functionality.
+Write some semantic HTML that describes your buttons and panes:
 
-It often include code snippets, which are just indented pieces of text:
+	#HTML
+	<ul id="tabs">
+		<li><a class="tab" href="#" id="one">One</a></li>
+		<li><a class="tab" href="#" id="two">Two</a></li>
+		<li><a class="tab" href="#" id="three">Three</a></li>
+	</ul>
+	<div id="home">
+		<div class="feature">
+			<img src="img/mgfxtabs1.jpg" alt="" />
+		</div>
+		<div class="feature"">
+			<img src="img/mgfxtabs2.jpg" alt="" />
+		</div>
+		<div class="feature">
+			<img src="img/mgfxtabs3.jpg" alt="" />
+		</div>
+	</div>
+
+Invoke the constructor. The first argument is the tab buttons, the second argument is the tab panes.  A third optional argument is a set of options to override the defaults.
 
 	#JS
-	var script = new MyScript()
-	script.doSomething();
+	var tabs = new MGFX.Tabs('#tabs li a', '#tabs div');
 
-If the first line is #JS or #CSS or #HTML, then the code is highlighted accordingly. 
+Options
+-------
 
-Screenshots
------------
+### Version 1.0
+* **slideInterval**: (int) Time in milliseconds to remain on each slide. Default: 5 seconds.
+* **transitionDuration**: (int) Time in milliseconds for the transition effect to take. Default: 1 second.
+* **startIndex**: (int) A zero-based number for which Tab should be displayed first. Default: 0 (first Tab).
+* **autoplay**: (boolean) Whether the tabs should automatically rotate. Default: false.
+* **hover**: (boolean) Whether the mouse hovering over a tab should stop the autoplay. Default: true.
+* **hash**: (boolean) Whether the Tabs should examine the hash of the URL to determine the startindex. Example: "example.com/portfolio#card". Default: true.
 
-This section is optional, but encouraged if the plugin affords it. Just a list of images, one per line. We do the resizing, so use actual size screenshots.
+License
+-------
 
-![Screenshot 1](http://url_to_project_screenshot)
-![Screenshot 2](http://url_to_project_screenshot)
-![Screenshot 3](http://url_to_project_screenshot)
-![Screenshot 4](http://url_to_project_screenshot)
-
-Arbitrary section
------------------
-
-This is an arbitrary section which will become a Tab in your MooForge project page. 
-Some arbitrary section examples:
-
-* FAQ
-* Notes
-* Misc
-* Known issues
-
-The name is up to you, but remember to keep it meaningful and simple. Arbitrary sections are always optional.
+MIT License. Copyright 2008-2009 [Sean McArthur](http://mcarthurgfx.com).

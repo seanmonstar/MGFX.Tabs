@@ -1,3 +1,5 @@
+//MGFX.Tabs. Copyright (c) 2008-2009 Sean McArthur <http://mcarthurgfx.com/>, MIT Style License.
+
 var MGFX = MGFX || {};
 
 MGFX.Tabs = new Class({
@@ -5,10 +7,7 @@ MGFX.Tabs = new Class({
 	Extends: MGFX.Rotater,
 	
 	options: {
-		slideInterval: 6000,
-		transitionDuration: 500,
-		autoplay: false,
-		hash: true
+		autoplay: false
 	},
 	
 	initialize: function(tabs, slides, options){
@@ -18,7 +17,7 @@ MGFX.Tabs = new Class({
 		if(this.options.hash && window.location.hash) {
 			var hash = window.location.hash.substring(1);
 			this.tabs.each(function(el, index) {
-				if(el.id == hash) {
+				if(el.get('id') == hash) {
 					options.startIndex = index;
 				}
 			});

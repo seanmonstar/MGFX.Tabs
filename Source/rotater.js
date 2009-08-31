@@ -1,22 +1,18 @@
+//MGFX.Rotater. Copyright (c) 2008-2009 Sean McArthur <http://mcarthurgfx.com/>, MIT Style License.
+
 var MGFX = MGFX || {};
 
 MGFX.Rotater = new Class({
 	
 	Implements: [Options, Events],
 	
-	/*
-	slideInterval: Time (ms) to remain on each slide.
-	transitionDuration: Time (ms) for the fade effect.
-	startIndex: Which slide to start at in the animation.  Zero-based index.
-	autoplay: Whether to start the rotating of the slides on load.
-	hover: Allow a hover event to stop the rotating.
-	*/
 	options: {
-		slideInterval: 4000,
+		slideInterval: 5000,
 		transitionDuration: 1000,
 		startIndex: 0,
 		autoplay: true,
-		hover:true
+		hover:true,
+		hash: true
 	},
 	
 	initialize: function(slides,options){
