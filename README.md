@@ -37,12 +37,12 @@ Options
 -------
 
 ### Version 1.0
-* **slideInterval**: (int) Time in milliseconds to remain on each slide. Default: 5 seconds.
-* **transitionDuration**: (int) Time in milliseconds for the transition effect to take. Default: 1 second.
-* **startIndex**: (int) A zero-based number for which Tab should be displayed first. Default: 0 (first Tab).
-* **autoplay**: (boolean) Whether the tabs should automatically rotate. Default: false.
-* **hover**: (boolean) Whether the mouse hovering over a tab should stop the autoplay. Default: true.
-* **hash**: (boolean) Whether the Tabs should examine the hash of the URL to determine the startindex. Example: "example.com/portfolio#card". Default: true.
+* **slideInterval**: (*int*) Time in milliseconds to remain on each slide. Default: 5 seconds.
+* **transitionDuration**: (*int*) Time in milliseconds for the transition effect to take. Default: 1 second.
+* **startIndex**: (*int*) A zero-based number for which Tab should be displayed first. Default: 0 (first Tab).
+* **autoplay**: (*boolean*) Whether the tabs should automatically rotate. Default: false.
+* **hover**: (*boolean*) Whether the mouse hovering over a tab should stop the autoplay. Default: true.
+* **hash**: (*boolean*) Whether the Tabs should examine the hash of the URL to determine the startindex. Example: "example.com/portfolio#card". Default: true.
 
 License
 -------
