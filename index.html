@@ -30,7 +30,15 @@
     hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
     .footer { text-align:center; padding-top:30px; font-style: italic; }
 	</style>
-	
+<link rel="stylesheet" href="style.css" />	
+<script type="text/javascript" src="mootools.full.js"></script>
+		<script type="text/javascript" src="rotater.js"></script>
+		<script type="text/javascript" src="tabs.js"></script>
+<script type="text/javascript">
+		window.addEvent('domready',function(){
+			this.tabs = new MGFX.Tabs('.tab','.feature');
+		});	
+		</script>
 </head>
 
 <body>
@@ -52,11 +60,25 @@
       A simple to use Tabs plugin for MooTools.
     </div>
 
-    <h2>Authors</h2>
-<p>Sean McArthur (sean@mcarthurgfx.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Sean McArthur (sean@mcarthurgfx.com)<br/>      </p>
-
+    <div class="demo">
+<ul id="tabs">
+			<li><a class="tab" href="#" id="one">One</a></li>
+			<li><a class="tab" href="#" id="two">Two</a></li>
+			<li><a class="tab" href="#" id="three">Three</a></li>
+		</ul>
+		
+		<div id="home">
+			<div class="feature">
+				<img src="img/mgfxtabs1.jpg" alt="" />
+			</div>
+			<div class="feature"">
+				<img src="img/mgfxtabs2.jpg" alt="" />
+			</div>
+			<div class="feature">
+				<img src="img/mgfxtabs3.jpg" alt="" />
+			</div>
+		</div>
+    </div>
 
     <h2>Download</h2>
     <p>
