@@ -7,7 +7,11 @@ MGFX.Tabs = new Class({
 	Extends: MGFX.Rotater,
 	
 	options: {
-		autoplay: false
+		autoplay: false,
+		onShowSlide: function(slideIndex) {
+			this.tabs.removeClass('active');
+			this.tabs[tabIndex].addClass('active');
+		}
 	},
 	
 	initialize: function(tabs, slides, options){
@@ -36,17 +40,5 @@ MGFX.Tabs = new Class({
 			}.bind(this));
 		}.bind(this));
 	}.protect(),
-	
-	activateTab: function(tabIndex) {
-		this.tabs.removeClass('active');
-		this.tabs[tabIndex].addClass('active');		
-	}.protect(),
-	
-	showSlide: function(slideIndex){
-		if(slideIndex == this.currentSlide) return this;
-		this.activateTab(slideIndex);
-		this.parent(slideIndex);
-		return this;
-	}
 	
 });

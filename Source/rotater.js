@@ -12,7 +12,11 @@ MGFX.Rotater = new Class({
 		startIndex: 0,
 		autoplay: true,
 		hover:true,
-		hash: true
+		hash: true,
+		onAutoPlay: $empty,
+		onRotate: $empty,
+		onShowSlide: $empty,
+		onStop: $empty,
 	},
 	
 	initialize: function(slides,options){
@@ -34,6 +38,7 @@ MGFX.Rotater = new Class({
 	}.protect(),
 	
 	showSlide: function(slideIndex){
+		if(slideIndex == this.currentSlide) return this;
 		var action = {};
 		this.slides.each(function(slide, index){
 			if(index == slideIndex && index != this.currentSlide){ //show
