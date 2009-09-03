@@ -35,6 +35,8 @@ Invoke the constructor. The first argument is the tab buttons, the second argume
 	
 Demo can be seen [here](http://seanmonstar.github.com/MGFX.Tabs/).
 
+Uses [Fx.Elements](http://mootools.net/more#Fx.Elements) from MooTools More.
+
 Options
 -------
 

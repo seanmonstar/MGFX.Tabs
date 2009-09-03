@@ -26,9 +26,7 @@ MGFX.Tabs = new Class({
 				}
 			});
 		}
-		
-		this.parent(slides,options);
-		return this;
+		return this.parent(slides,options);
 	},
 	
 	createTabs: function () {
