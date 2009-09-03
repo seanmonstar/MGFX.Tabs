@@ -37,6 +37,6 @@ MGFX.Tabs = new Class({
 				this.stop();
 			}.bind(this));
 		}.bind(this));
-	}.protect(),
+	}.protect()
 	
 });
