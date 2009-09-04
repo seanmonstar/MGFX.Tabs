@@ -10,7 +10,7 @@ MGFX.Tabs = new Class({
 		autoplay: false,
 		onShowSlide: function(slideIndex) {
 			this.tabs.removeClass('active');
-			this.tabs[slideIndex].addClass('active');
+			this.tabs[tabIndex].addClass('active');
 		}
 	},
 	
