@@ -17,6 +17,8 @@ MGFX.Rotater = new Class({
 		onRotate: $empty,
 		onShowSlide: $empty,
 		onStop: $empty,
+		onPause: $empty,
+		onResume: $empty
 	},
 	
 	initialize: function(slides,options){
@@ -26,7 +28,7 @@ MGFX.Rotater = new Class({
 		this.showSlide(this.options.startIndex);
 		if(this.slides.length < 2) this.options.autoplay = false;
 		if(this.options.autoplay) this.autoplay();
-		if(this.options.hover) this.slides.addEvent('mouseenter',function() { this.stop(); }.bind(this));
+		if(this.options.hover) this.setupHover();
 		return this;
 	},
 	
@@ -35,6 +37,38 @@ MGFX.Rotater = new Class({
 		this.slides.each(function(slide){
 			slide.setStyle('opacity',0);
 		});
+	}.protect(),
+	
+	setupHover: function() {
+		var _timeLastRotate = new Date(),
+			_timeLastPause,
+			_timeTillRotate = this.options.slideInterval,
+			_resumeDelay;
+			
+		this.addEvent('onRotate', function() {
+			if(this.slideshowInt) {
+				_timeLastRotate = new Date();
+				_timeTillRotate = this.options.slideInterval;
+			}
+		});
+		this.slides.addEvent('mouseenter',function() {
+			this.stop();
+			_timeLastPause = new Date();
+			$clear(_resumeDelay);
+			this.fireEvent('onPause');
+		}.bind(this));
+		
+		this.slides.addEvent('mouseleave', function() {
+			console.log(_timeLastPause - _timeLastRotate);
+			var timePassed = (_timeLastPause - _timeLastRotate);
+			_timeLastRotate = new Date() - timePassed;
+			_resumeDelay = (function() {
+				this.autoplay();
+				this.rotate();
+				this.fireEvent('onResume');
+			}).delay(_timeTillRotate - timePassed, this);
+			
+		}.bind(this));
 	}.protect(),
 	
 	showSlide: function(slideIndex){
@@ -70,8 +104,8 @@ MGFX.Rotater = new Class({
 	},
 	
 	rotate: function(){
-		current = this.currentSlide;
-		next = (current+1 >= this.slides.length) ? 0 : current+1;
+		var current = this.currentSlide;
+		var next = (current+1 >= this.slides.length) ? 0 : current+1;
 		this.showSlide(next);
 		this.fireEvent('onRotate', next);
 		return this;
