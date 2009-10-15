@@ -59,15 +59,13 @@ MGFX.Rotater = new Class({
 		}.bind(this));
 		
 		this.slides.addEvent('mouseleave', function() {
-			console.log(_timeLastPause - _timeLastRotate);
 			var timePassed = (_timeLastPause - _timeLastRotate);
 			_timeLastRotate = new Date() - timePassed;
 			_resumeDelay = (function() {
 				this.autoplay();
 				this.rotate();
 				this.fireEvent('onResume');
-			}).delay(_timeTillRotate - timePassed, this);
-			
+			}).delay(_timeTillRotate - timePassed, this);			
 		}.bind(this));
 	}.protect(),
 	

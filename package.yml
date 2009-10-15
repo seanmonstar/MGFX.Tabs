@@ -1,7 +1,7 @@
 name: MGFX.Tabs
 author: seanmonstar
 category: Interface
-tags: [tabs]
+#tags: [tabs]
 #docs:          http://url_to_docs
 demo: http://seanmonstar.github.com/MGFX.Tabs/
 # requires:
