@@ -33,7 +33,7 @@ MGFX.Rotater = new Class({
 	},
 	
 	createFx: function(){
-		if (!this.slideFx) this.slideFx = new Fx.Elements(this.slides, {duration: this.options.transitionDuration});
+		if (!this.slideFx) this.slideFx = new Fx.Elements(this.slides, {duration: this.options.transitionDuration, link: 'cancel'});
 		this.slides.each(function(slide){
 			slide.setStyle('opacity',0);
 		});
@@ -45,20 +45,20 @@ MGFX.Rotater = new Class({
 			_timeTillRotate = this.options.slideInterval,
 			_resumeDelay;
 			
-		this.addEvent('onRotate', function() {
+		var onRotate = this._onRotate = function() {
 			if(this.slideshowInt) {
 				_timeLastRotate = new Date();
 				_timeTillRotate = this.options.slideInterval;
 			}
-		});
-		this.slides.addEvent('mouseenter',function() {
+		};
+		var onMouseEnter = this._onMouseEnter = function() {
 			this.stop();
 			_timeLastPause = new Date();
 			$clear(_resumeDelay);
 			this.fireEvent('onPause');
-		}.bind(this));
+		}.bind(this);
 		
-		this.slides.addEvent('mouseleave', function() {
+		var onMouseLeave = this._onMouseLeave = function() {
 			var timePassed = (_timeLastPause - _timeLastRotate);
 			_timeLastRotate = new Date() - timePassed;
 			_resumeDelay = (function() {
@@ -66,8 +66,22 @@ MGFX.Rotater = new Class({
 				this.rotate();
 				this.fireEvent('onResume');
 			}).delay(_timeTillRotate - timePassed, this);			
-		}.bind(this));
+		}.bind(this);
+		
+		this.addEvent('onRotate', onRotate);
+		this.slides.addEvents({
+			'mouseenter': onMouseEnter,
+			'mouseleave': onMouseLeave
+		});
 	}.protect(),
+	
+	removeHover: function() {
+		this.removeEvent('onRotate', this._onRotate);
+		this.slides.removeEvents({
+			'mouseenter': this._onMouseEnter,
+			'mouseleave': this._onMouseLeave
+		});
+	},
 	
 	showSlide: function(slideIndex){
 		if(slideIndex == this.currentSlide) return this;
@@ -95,9 +109,10 @@ MGFX.Rotater = new Class({
 		return this;
 	},
 	
-	stop: function(){
+	stop: function(not_pause){
 		$clear(this.slideshowInt);
 		this.fireEvent('onStop');
+		if(not_pause && this.options.hover) this.removeHover();
 		return this;
 	},
 	

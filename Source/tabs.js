@@ -34,7 +34,7 @@ MGFX.Tabs = new Class({
 			tab.addEvent('click', function(event){ 
 				event.preventDefault();
 				this.showSlide(index);
-				this.stop();
+				this.stop(true);
 			}.bind(this));
 		}.bind(this));
 	}.protect()
