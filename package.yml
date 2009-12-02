@@ -1,12 +1,6 @@
 name: MGFX.Tabs
 author: seanmonstar
 category: Interface
-#tags: [tabs]
-#docs:          http://url_to_docs
+tags: [tabs]
+docs: http://github.com/seanmonstar/MGFX.Tabs/blob/master/Docs/mgfxtabs.md
 demo: http://seanmonstar.github.com/MGFX.Tabs/
-# requires:
-#   - { package: 'some-plugin', version: '0.1' }
-#   - { package: 'http://external-plugin.com' }
-# Fx.Elements
-
-# For dependencies of projects that are *already* in the forge, use the plugin slug (for example some-plugin for Some Plugin) for "package", and the version of the foreign plugin that yours is known to work with in "version". For external dependencies, just use the URL.
