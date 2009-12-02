@@ -28,7 +28,6 @@ MGFX.Rotater = new Class({
 		this.showSlide(this.options.startIndex);
 		if(this.slides.length < 2) this.options.autoplay = false;
 		if(this.options.autoplay) this.autoplay();
-		if(this.options.hover) this.setupHover();
 		return this;
 	},
 	
@@ -104,6 +103,7 @@ MGFX.Rotater = new Class({
 	},
 	
 	autoplay: function(){
+		if(this.options.hover) this.setupHover();
 		this.slideshowInt = this.rotate.periodical(this.options.slideInterval, this);
 		this.fireEvent('onAutoPlay');
 		return this;
