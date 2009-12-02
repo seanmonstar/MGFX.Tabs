@@ -1,3 +1,22 @@
+/*
+---
+description: MGFX.Tabs
+ 
+authors:
+  - Sean McArthur (http://mcarthurgfx.com)
+ 
+license:
+  - MIT-style license
+ 
+requires:
+  core/1.2.4: '*'
+  more/1.2.4.1: Fx.Elements
+  
+provides:
+  - MGFX.Tabs
+...
+*/
+
 //MGFX.Tabs. Copyright (c) 2008-2009 Sean McArthur <http://mcarthurgfx.com/>, MIT Style License.
 
 var MGFX = MGFX || {};
