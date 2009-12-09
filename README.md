@@ -51,4 +51,4 @@ Options
 License
 -------
 
-MIT License. Copyright 2008-2009 [Sean McArthur](http://mcarthurgfx.com).
+MIT License. Copyright 2008-2010 [Sean McArthur](http://mcarthurgfx.com).
