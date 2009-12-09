@@ -1,20 +1,13 @@
 /*
 ---
-
-script: rotater.js
-
-description: MGFX.Rotater, the base class that provides slides and transitions.
- 
-authors: Sean McArthur (http://mcarthurgfx.com)
- 
-license: MIT-style license
- 
+script: tabs.js
+description: MGFX.Tabs, extension of base class that adds tabs to control the rotater. 
+authors: Sean McArthur (http://mcarthurgfx.com) 
+license: MIT-style license 
 requires:
  core/1.2.4: '*'
  more/1.2.4.1: [Fx.Elements]
-  
-provides: [MGFX.Rotater]
-
+provides: [MGFX.Tabs]
 ...
 */
 
