@@ -3,7 +3,8 @@ MGFX.Tabs
 
 A simple to use Tabs plugin using MooTools. Uses your normal semantic mark-up, and only requires a single line to get your tabs going.
 
-![Screenshot](http://monstar.blazonco.com/images/blog/mgfxtabs.jpg)
+![Screenshot](http://mcarthurgfx.com/images/blog/mgfxtabs.jpg)
+
 
 How to use
 ----------
@@ -31,7 +32,7 @@ Write some semantic HTML that describes your buttons and panes:
 Invoke the constructor. The first argument is the tab buttons, the second argument is the tab panes.  A third optional argument is a set of options to override the defaults.
 
 	#JS
-	var tabs = new MGFX.Tabs('#tabs li a', '#tabs div');
+	var tabs = new MGFX.Tabs('#tabs li a', '#home .feature');
 	
 Demo can be seen [here](http://seanmonstar.github.com/MGFX.Tabs/).
 
