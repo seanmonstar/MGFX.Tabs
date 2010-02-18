@@ -130,11 +130,23 @@ MGFX.Rotater = new Class({
 	},
 	
 	rotate: function(){
-		var current = this.currentSlide;
-		var next = (current+1 >= this.slides.length) ? 0 : current+1;
+		var next = this.getNext();
 		this.showSlide(next);
 		this.fireEvent('onRotate', next);
 		return this;
+	},
+	
+	random: function() {
+		var index = Math.floor(Math.random() * this.slides.length);
+		index = index == this.currentSlide ? this.getNext() : index;
+		this.showSlide(index);
+		this.fireEvent('onRandom', index);
+		return this;
 	}
-
+	
+	getNext: function() {
+		var current = this.currentSlide;
+		return (current+1 >= this.slides.length) ? 0 : current+1
+	}.protect()
+	
 });

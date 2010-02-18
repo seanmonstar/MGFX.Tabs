@@ -106,6 +106,23 @@ This changes the current showing slide to the next in the list.
 
 * onRotate
 
+MGFX.Rotater Method: random {#MGFX.Rotater:random}
+-----------------------------------------------------------
+
+This changes the current showing slide a pseudo-random slide. It will always be a different slide, in case the randomly chosen index is already the current.
+
+### Syntax:
+
+		tabs.random();
+
+### Returns:
+
+* (*object*) This MGFX.Rotater instance.
+
+### Events:
+
+* onRandom
+
 Class: MGFX.Tabs {#MGFX.Tabs}
 =====================
 
