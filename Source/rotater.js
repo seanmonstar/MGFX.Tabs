@@ -142,7 +142,7 @@ MGFX.Rotater = new Class({
 		this.showSlide(index);
 		this.fireEvent('onRandom', index);
 		return this;
-	}
+	},
 	
 	getNext: function() {
 		var current = this.currentSlide;
