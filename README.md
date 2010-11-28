@@ -41,7 +41,7 @@ Uses [Fx.Elements](http://mootools.net/more#Fx.Elements) from MooTools More.
 Options
 -------
 
-### Version 1.2.0
+### Version 1.3.0
 * **slideInterval**: (*int*) Time in milliseconds to remain on each slide. Default: 5 seconds.
 * **transitionDuration**: (*int*) Time in milliseconds for the transition effect to take. Default: 1 second.
 * **startIndex**: (*int*) A zero-based number for which Tab should be displayed first. Default: 0 (first Tab).
@@ -52,4 +52,4 @@ Options
 License
 -------
 
-MIT License. Copyright 2008-2010 [Sean McArthur](http://mcarthurgfx.com).
+MIT License. Copyright 2008-2011 [Sean McArthur](http://seanmonstar.com).
