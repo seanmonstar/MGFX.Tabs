@@ -2,18 +2,18 @@
 ---
 script: tabs.js
 description: MGFX.Tabs, extension of base class that adds tabs to control the rotater. 
-authors: Sean McArthur (http://mcarthurgfx.com) 
+authors: Sean McArthur (http://seanmonstar.com) 
 license: MIT-style license 
 requires:
- core/1.2.4: '*'
- more/1.2.4.1: [Fx.Elements]
+ core/1.3.0: [Event, Element.Event, Fx.CSS]
+ more/1.3.0.1: [Fx.Elements]
 provides: [MGFX.Tabs]
 ...
 */
 
-//MGFX.Tabs. Copyright (c) 2008-2010 Sean McArthur <http://mcarthurgfx.com/>, MIT Style License.
+//MGFX.Tabs. Copyright (c) 2008-2010 Sean McArthur <http://seanmonstar.com/>, MIT Style License.
 
-var MGFX = MGFX || {};
+if(!window.MGFX) MGFX = {};
 
 MGFX.Tabs = new Class({
 	
@@ -32,24 +32,32 @@ MGFX.Tabs = new Class({
 		this.tabs = $$(tabs);
 		this.createTabs();
 		if(this.options.hash && window.location.hash) {
-			var hash = window.location.hash.substring(1);
-			this.tabs.each(function(el, index) {
-				if(el.get('id') == hash) {
-					options.startIndex = index;
-				}
-			});
+			this.getHashIndex();
 		}
 		return this.parent(slides,options);
 	},
 	
 	createTabs: function () {
-		this.tabs.each(function(tab,index){
+		var that = this;
+		this.tabs.forEach(function(tab,index){
+			//need index, thats why theres the forEach
 			tab.addEvent('click', function(event){ 
 				event.preventDefault();
-				this.showSlide(index);
-				this.stop(true);
-			}.bind(this));
-		}.bind(this));
+				that.showSlide(index);
+				that.stop(true);
+			});
+		});
+	}.protect(),
+	
+	getHashIndex: function() {
+		var hash = window.location.hash.substring(1);
+		this.tabs.forEach(function(el, index) {
+			if(el.get('id') == hash) {
+				options.startIndex = index;
+			}
+		});
 	}.protect()
 	
 });
+
+if(!window.Tabs) var Tabs = MGFX.Tabs;

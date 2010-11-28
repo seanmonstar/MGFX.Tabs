@@ -2,18 +2,18 @@
 ---
 script: rotater.js
 description: MGFX.Rotater, the base class that provides slides and transitions. 
-authors: Sean McArthur (http://mcarthurgfx.com) 
+authors: Sean McArthur (http://seanmonstar.com) 
 license: MIT-style license 
 requires:
- core/1.2.4: '*'
- more/1.2.4.1: [Fx.Elements]
+ core/1.3.0: [Event, Element.Event, Fx.CSS]
+ more/1.3.0.1: [Fx.Elements]
 provides: [MGFX.Rotater]
 ...
 */
 
-//MGFX.Rotater. Copyright (c) 2008-2010 Sean McArthur <http://mcarthurgfx.com/>, MIT Style License.
+//MGFX.Rotater. Copyright (c) 2008-2010 Sean McArthur <http://seanmonstar.com/>, MIT Style License.
 
-var MGFX = MGFX || {};
+if(!window.MGFX) MGFX = {};
 
 MGFX.Rotater = new Class({
 	
@@ -25,13 +25,13 @@ MGFX.Rotater = new Class({
 		startIndex: 0,
 		autoplay: true,
 		hover:true,
-		hash: true,
-		onAutoPlay: $empty,
-		onRotate: $empty,
-		onShowSlide: $empty,
-		onStop: $empty,
-		onPause: $empty,
-		onResume: $empty
+		hash: true
+		/*onAutoPlay: function() {},
+		onRotate: function() {},
+		onShowSlide: function() {},
+		onStop: function() {},
+		onPause: function() {},
+		onResume: function() {}*/
 	},
 	
 	initialize: function(slides,options){
@@ -54,8 +54,9 @@ MGFX.Rotater = new Class({
 	setupHover: function() {
 		var _timeLastRotate = new Date(),
 			_timeLastPause,
-			_timeTillRotate = this.options.slideInterval,
-			_resumeDelay;
+			_timeTillRotate = this.options.slideInterval;
+
+		this._resumeDelay = null;
 			
 		var onRotate = this._onRotate = function() {
 			if(this.slideshowInt) {
@@ -66,14 +67,14 @@ MGFX.Rotater = new Class({
 		var onMouseEnter = this._onMouseEnter = function() {
 			this.stop();
 			_timeLastPause = new Date();
-			$clear(_resumeDelay);
+			clearTimeout(this._resumeDelay);
 			this.fireEvent('onPause');
 		}.bind(this);
 		
 		var onMouseLeave = this._onMouseLeave = function() {
 			var timePassed = (_timeLastPause - _timeLastRotate);
 			_timeLastRotate = new Date() - timePassed;
-			_resumeDelay = (function() {
+			this._resumeDelay = (function() {
 				this.autoplay();
 				this.rotate();
 				this.fireEvent('onResume');
@@ -85,6 +86,8 @@ MGFX.Rotater = new Class({
 			'mouseenter': onMouseEnter,
 			'mouseleave': onMouseLeave
 		});
+		
+		this._hoverSet = true;
 	}.protect(),
 	
 	removeHover: function() {
@@ -93,22 +96,21 @@ MGFX.Rotater = new Class({
 			'mouseenter': this._onMouseEnter,
 			'mouseleave': this._onMouseLeave
 		});
+		clearTimeout(this._resumeDelay);
+		this._hoverSet = false;
 	},
 	
 	showSlide: function(slideIndex){
 		if(slideIndex == this.currentSlide) return this;
-		var action = {};
+		var action = {},
+			curSlide = this.currentSlide;
 		this.slides.each(function(slide, index){
-			if(index == slideIndex && index != this.currentSlide){ //show
-				action[index.toString()] = {
-					opacity: 1
-				};
+			if(index == slideIndex && index != curSlide){ //show
+				action[index.toString()] = { opacity: 1 };
 			} else {
-				action[index.toString()] = {
-					opacity:0
-				};
+				action[index.toString()] = { opacity:0 };
 			}
-		}, this);
+		});
 		this.fireEvent('onShowSlide', slideIndex);
 		this.currentSlide = slideIndex;
 		this.slideFx.start(action);
@@ -116,14 +118,16 @@ MGFX.Rotater = new Class({
 	},
 	
 	autoplay: function(){
-		if(this.options.hover) this.setupHover();
+		if(this.slideshowInt) return this;
+		if(this.options.hover && !this._hoverSet) this.setupHover();
 		this.slideshowInt = this.rotate.periodical(this.options.slideInterval, this);
 		this.fireEvent('onAutoPlay');
 		return this;
 	},
 	
 	stop: function(not_pause){
-		$clear(this.slideshowInt);
+		clearInterval(this.slideshowInt);
+		this.slideshowInt = null;
 		this.fireEvent('onStop');
 		if(not_pause && this.options.hover) this.removeHover();
 		return this;
@@ -150,3 +154,5 @@ MGFX.Rotater = new Class({
 	}.protect()
 	
 });
+
+if(!window.Rotator) var Rotater = MGFX.Rotater;
