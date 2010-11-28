@@ -4,20 +4,7 @@
 		<title>Tabs Demo</title>
 		
 		<link rel="stylesheet" href="style.css" />
-		<script type="text/javascript" src="mootools.full.js"></script>
-		<script type="text/javascript" src="../Source/rotater.js"></script>
-		<script type="text/javascript" src="../Source/tabs.js"></script>
 		
-		<script type="text/javascript">
-		window.addEvent('domready',function(){
-			this.tabs = new MGFX.Tabs('.tab','.feature',{
-				autoplay: false,
-				transitionDuration:500,
-				slideInterval:3000,
-				hover:true
-			});
-		});	
-		</script>
 	</head>
 	<body>
 		<ul id="tabs">
@@ -37,6 +24,18 @@
 				<img src="img/mgfxtabs3.jpg" alt="" />
 			</div>
 		</div>
-
+		
+		<script type="text/javascript" src="mootools.full.js"></script>
+		<script type="text/javascript" src="../Source/rotater.js"></script>
+		<script type="text/javascript" src="../Source/tabs.js"></script>
+		<script type="text/javascript">
+			var tabs = new MGFX.Tabs('.tab','.feature',{
+				autoplay: true,
+				transitionDuration:500,
+				slideInterval:3000,
+				hover:true
+			});
+		</script>
+		
 	</body>
 </html>
