@@ -11,7 +11,7 @@ provides: [MGFX.Tabs]
 ...
 */
 
-//MGFX.Tabs. Copyright (c) 2008-2010 Sean McArthur <http://seanmonstar.com/>, MIT Style License.
+//MGFX.Tabs. Copyright (c) 2008-2011 Sean McArthur <http://seanmonstar.com/>, MIT Style License.
 
 if(!window.MGFX) MGFX = {};
 
@@ -28,11 +28,10 @@ MGFX.Tabs = new Class({
 	},
 	
 	initialize: function(tabs, slides, options){
-		this.setOptions(options);
 		this.tabs = $$(tabs);
 		this.createTabs();
-		if(this.options.hash && window.location.hash) {
-			this.getHashIndex();
+		if(options.hash && window.location.hash) {
+			this.getHashIndex(options);
 		}
 		return this.parent(slides,options);
 	},
@@ -49,7 +48,7 @@ MGFX.Tabs = new Class({
 		});
 	}.protect(),
 	
-	getHashIndex: function() {
+	getHashIndex: function(options) {
 		var hash = window.location.hash.substring(1);
 		this.tabs.forEach(function(el, index) {
 			if(el.get('id') == hash) {
