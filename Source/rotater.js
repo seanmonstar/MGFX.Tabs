@@ -107,8 +107,7 @@ MGFX.Rotater = new Class({
 
 		this.slides.each(function(slide, index) {
 			if(index == slideIndex && index != curSlide){ //show
-				slide.setStyle('visibility', 'visible');
-				action[index.toString()] = { opacity: 1 };
+				action[index.toString()] = { opacity: 1, visibility: 'visible' };
 			} else {
 				action[index.toString()] = { opacity: 0 };
 			}
