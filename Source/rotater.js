@@ -103,18 +103,32 @@ MGFX.Rotater = new Class({
 	showSlide: function(slideIndex){
 		if(slideIndex == this.currentSlide) return this;
 		var action = {},
-			curSlide = this.currentSlide;
+			curSlide = this.currentSlide,
+			_self = this;
 		this.slides.each(function(slide, index){
 			if(index == slideIndex && index != curSlide){ //show
+				_self.enableSlide(slide);
 				action[index.toString()] = { opacity: 1 };
 			} else {
-				action[index.toString()] = { opacity:0 };
+				action[index.toString()] = { opacity: 0 };
 			}
 		});
 		this.fireEvent('onShowSlide', slideIndex);
 		this.currentSlide = slideIndex;
-		this.slideFx.start(action);
+		this.slideFx.start(action).chain(this.disableInactiveSlides.bind(this));
 		return this;
+	},
+
+	enableSlide: function(slide) {
+		slide.setStyle('display', 'block');
+	},
+
+	disableInactiveSlides: function() {
+		var _self = this;
+
+		this.slides.each(function(slide, index) {
+			if (index != _self.currentSlide) slide.setStyle('display', 'none');
+		});
 	},
 	
 	autoplay: function(){
