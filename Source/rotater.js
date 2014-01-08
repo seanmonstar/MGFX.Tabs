@@ -28,10 +28,12 @@ MGFX.Rotater = new Class({
 		hash: true
 		/*onAutoPlay: function() {},
 		onRotate: function() {},
+		onRandom: function() {},
 		onShowSlide: function() {},
 		onStop: function() {},
 		onPause: function() {},
-		onResume: function() {}*/
+		onResume: function() {}
+		onComplete: function() {}*/
 	},
 	
 	initialize: function(slides,options){
@@ -46,6 +48,9 @@ MGFX.Rotater = new Class({
 	
 	createFx: function(){
 		if (!this.slideFx) this.slideFx = new Fx.Elements(this.slides, {duration: this.options.transitionDuration, link: 'cancel'});
+		this.slideFx.addEvent('complete', function(){
+			this.fireEvent('onComplete');
+		}.bind(this));
 		this.slides.each(function(slide){
 			slide.setStyle('opacity',0);
 		});
